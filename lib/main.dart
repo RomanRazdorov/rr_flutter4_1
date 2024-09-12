@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rr_flutter4_1/button_screen.dart';
+import 'package:rr_flutter4_1/column_list.dart';
+import 'package:rr_flutter4_1/listview_separated.dart';
+import 'package:rr_flutter4_1/listview.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +13,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ButtonScreen(),
+        '/column_list': (context) => ColumnList(),
+        '/list_view': (context) => ListViewScreen(),
+        '/list_view_separated': (context) => ListViewSeparatedScreen(),
+      },
     );
   }
 }
