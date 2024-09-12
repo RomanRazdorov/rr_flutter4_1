@@ -48,7 +48,7 @@ class _ListViewScreenState extends State<ListViewSeparatedScreen> {
       body: Center(
         child: AppEnv.myList.isEmpty
             ? const Text('Empty')
-            : ListView.builder(
+            : ListView.separated(
                 padding: const EdgeInsets.all(8),
                 controller: _scrollController,
                 itemCount: AppEnv.myList.length,
@@ -57,6 +57,7 @@ class _ListViewScreenState extends State<ListViewSeparatedScreen> {
                     title: Text('Item ${AppEnv.myList[index]}'),
                   );
                 },
+                separatorBuilder: (context, index) => const Divider(),
               ),
       ),
     );
