@@ -3,5 +3,5 @@ abstract class AppEnv {
 
   static int index = 0;
   static List<int> myList =
-      List<int>.generate(100, (index) => index, growable: true);
+      List<int>.generate(10, (index) => index, growable: true);
 }

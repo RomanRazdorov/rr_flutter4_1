@@ -30,18 +30,22 @@ class _ListViewScreenState extends State<ListViewScreen> {
               state: this,
               icon: const Icon(Icons.delete),
               callback: () {
-                AppEnv.myList.removeAt(AppEnv.myList.length - 1);
+                (AppEnv.myList.length > 0)
+                    ? AppEnv.myList.removeAt(AppEnv.myList.length - 1)
+                    : null;
               }),
           UpdateButton(
               state: this,
               icon: const Icon(Icons.add),
               callback: () {
                 AppEnv.myList.add(AppEnv.myList.length);
-                _scrollController.animateTo(
-                  _scrollController.position.maxScrollExtent + 50,
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.ease,
-                );
+                try {
+                  _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent + 50,
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.ease,
+                  );
+                } catch (e) {}
               }),
         ],
       ),

@@ -21,33 +21,39 @@ class _ColumnListState extends State<ColumnList> {
               state: this,
               icon: const Icon(Icons.delete),
               callback: () {
-                AppEnv.myList.removeAt(AppEnv.myList.length - 1);
+                (AppEnv.myList.length > 0)
+                    ? AppEnv.myList.removeAt(AppEnv.myList.length - 1)
+                    : null;
               }),
           UpdateButton(
               state: this,
               icon: const Icon(Icons.add),
               callback: () {
                 AppEnv.myList.add(AppEnv.myList.length);
-                _scrollController.animateTo(
-                  _scrollController.position.maxScrollExtent + 50,
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.ease,
-                );
+                try {
+                  _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent + 50,
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.ease,
+                  );
+                } catch (e) {}
               }),
         ],
       ),
       body: Center(
-          child: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < AppEnv.myList.length; i++)
-              Text('Item ${AppEnv.myList[i]}',
-                  style: const TextStyle(fontSize: 20)),
-          ],
-        ),
-      )),
+          child: AppEnv.myList.isEmpty
+              ? const Text('Empty')
+              : SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (int i = 0; i < AppEnv.myList.length; i++)
+                        Text('Item ${AppEnv.myList[i]}',
+                            style: const TextStyle(fontSize: 20)),
+                    ],
+                  ),
+                )),
     );
   }
 }
