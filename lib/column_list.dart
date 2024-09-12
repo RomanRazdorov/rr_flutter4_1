@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:rr_flutter4_1/app_env.dart';
+import 'package:rr_flutter4_1/remove_button.dart';
 
 class ColumnList extends StatelessWidget {
   ColumnList({super.key});
-
-  int index = 0;
-  final myList =
-      List<int>.generate(100, (index) => index * index, growable: false);
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +12,16 @@ class ColumnList extends StatelessWidget {
         title: const Text('Column List'),
         centerTitle: true,
         backgroundColor: Colors.cyan[700],
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
-              },
-              icon: const Icon(Icons.arrow_back))
-        ],
+        actions: [],
       ),
       body: Center(
           child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            for (int i = 0; i < myList.length; i++)
-              Text('Item ${myList[i]}', style: const TextStyle(fontSize: 20)),
+            for (int i = 0; i < AppEnv.myList.length; i++)
+              Text('Item ${AppEnv.myList[i]}',
+                  style: const TextStyle(fontSize: 20)),
           ],
         ),
       )),
