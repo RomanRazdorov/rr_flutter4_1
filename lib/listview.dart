@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rr_flutter4_1/app_env.dart';
-import 'package:rr_flutter4_1/remove_button.dart';
+import 'package:rr_flutter4_1/update_button.dart';
 
 class ListViewScreen extends StatefulWidget {
   @override
@@ -8,6 +8,8 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
+  ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +37,11 @@ class _ListViewScreenState extends State<ListViewScreen> {
               icon: const Icon(Icons.add),
               callback: () {
                 AppEnv.myList.add(AppEnv.myList.length);
+                _scrollController.animateTo(
+                  _scrollController.position.maxScrollExtent + 50,
+                  duration: const Duration(milliseconds: 1000),
+                  curve: Curves.ease,
+                );
               }),
         ],
       ),
@@ -43,6 +50,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
             ? const Text('Empty')
             : ListView.builder(
                 padding: const EdgeInsets.all(8),
+                controller: _scrollController,
                 itemCount: AppEnv.myList.length,
                 itemBuilder: (context, index) {
                   return ListTile(
