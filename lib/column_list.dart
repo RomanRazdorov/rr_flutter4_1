@@ -42,7 +42,10 @@ class _ColumnListState extends State<ColumnList> {
       ),
       body: Center(
           child: AppEnv.myList.isEmpty
-              ? const Text('Empty')
+              ? const Text(
+                  'Empty',
+                  style: TextStyle(fontSize: 20),
+                )
               : SingleChildScrollView(
                   controller: _scrollController,
                   child: Column(

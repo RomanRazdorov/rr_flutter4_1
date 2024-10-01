@@ -51,7 +51,10 @@ class _ListViewScreenState extends State<ListViewSeparatedScreen> {
       ),
       body: Center(
         child: AppEnv.myList.isEmpty
-            ? const Text('Empty')
+            ? const Text(
+                'Empty',
+                style: TextStyle(fontSize: 20),
+              )
             : ListView.separated(
                 padding: const EdgeInsets.all(8),
                 controller: _scrollController,

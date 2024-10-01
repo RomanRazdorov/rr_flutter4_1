@@ -3,6 +3,7 @@ import 'package:rr_flutter4_1/app_env.dart';
 import 'package:rr_flutter4_1/update_button.dart';
 
 class ListViewScreen extends StatefulWidget {
+  ListViewScreen({Key? key}) : super(key: key);
   @override
   _ListViewScreenState createState() => _ListViewScreenState();
 }
@@ -51,8 +52,25 @@ class _ListViewScreenState extends State<ListViewScreen> {
       ),
       body: Center(
         child: AppEnv.myList.isEmpty
-            ? const Text('Empty')
-            : ListView.builder(
+            ? const Text(
+                'Empty',
+                style: TextStyle(fontSize: 20),
+              )
+            :
+            // ListView(
+            //     children: AppEnv.myList
+            //         .map((item) => GestureDetector(
+            //               key: ValueKey(item),
+            //               onTap: () =>
+            //                   setState(() => AppEnv.myList.remove(item)),
+            //               child: Padding(
+            //                 padding: const EdgeInsets.all(16.0),
+            //                 child: Text(item.toString()),
+            //               ),
+            //             ))
+            //         .toList(),
+            //   ),
+            ListView.builder(
                 padding: const EdgeInsets.all(8),
                 controller: _scrollController,
                 itemCount: AppEnv.myList.length,
